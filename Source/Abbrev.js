@@ -1,3 +1,22 @@
+/*
+---
+description: An Array extenstion that calculates the unique abbreviations for the set of strings contained in the array.
+
+license: LGPL
+
+authors:
+- Michael Ficarra
+
+requires:
+- core/1.2.4:Core
+- core/1.2.4:Array
+- core/1.2.4:Hash
+- core/1.2.4:Class
+
+provides: [Array.abbrev]
+
+...
+*/
 (function(){
 	var Abbrev = new Class({
 		initialize: function(words,pattern){
@@ -36,3 +55,7 @@
 		}
 	});
 })()
+
+/* Copyright 2010 Michael Ficarra
+This program is distributed under the (very open)
+terms of the GNU Lesser General Public License */
