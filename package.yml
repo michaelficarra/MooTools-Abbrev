@@ -2,6 +2,6 @@ name: Abbrev
 author: michael
 category: Native
 tags: [ruby, abbrev, abbreviations, array]
-current: '0.1'
+current: 0.2
 docs: 'http://github.com/michaelficarra/MooTools-Abbrev'
 #demo: http://url.to.demo
