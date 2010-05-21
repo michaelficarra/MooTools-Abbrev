@@ -13,34 +13,34 @@ provides: [Array.abbrev]
 		words = words.flatten().filter(function(element,index,words){
 			return words.indexOf(element)==index;
 		});
-		var table=$H(), seen=$H();
-		if($defined(pattern) && $type(pattern)=='string') pattern = new RegExp('^'+pattern);
-		$each(words,function(word){
+		var table = new Hash(),
+			seen  = new Hash();
+		if(pattern!==undefined && pattern.constructor!==RegExp) pattern = new RegExp('^'+pattern.toString());
+		Array.each(words,function(word){
 			word = word.toString();
 			if(word=='') return;
-			var abbrev=word, len=0;
+			var abbrev = word,
+				len    = 0;
 			while((len=abbrev.search(/[\w\W]$/))>0){
-				abbrev=word.substr(0,len);
-				if($defined(pattern) && !abbrev.test(pattern)) continue;
-				if($defined(seen[abbrev])){
+				abbrev = word.substr(0,len);
+				if(pattern!==undefined && !abbrev.test(pattern)) continue;
+				if(seen[abbrev]!==undefined){
 					table.erase(abbrev);
 				} else {
-					seen[abbrev]=true;
-					table[abbrev]=word
+					seen[abbrev]  = true;
+					table[abbrev] = word
 				}
 			}
 		});
 		words.each(function(word){
-			if($defined(pattern) && !word.test(pattern)) return;
-			table[word]=word;
+			if(pattern!==undefined && !word.test(pattern)) return;
+			table[word] = word;
 		});
 		return table;
 	});
 
-	Array.implement({
-		abbrev: function(pattern){
-			return new Abbrev(this,pattern);
-		}
+	Array.implement('abbrev',function(pattern){
+		return new Abbrev(this,pattern);
 	});
 })()
 
